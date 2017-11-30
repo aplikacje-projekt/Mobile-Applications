@@ -1,0 +1,16 @@
+<h1>My favourites stations</h1>
+  <% current_user.petrol_stations.each do |petrol_station| %>
+    <li><%= petrol_station.name %> <%= petrol_station.street %>
+      <%= petrol_station.city %> <%= link_to "Delete from favourites",
+      { :controller => :favourites, :action => :destroy,
+        :petrol_station_id => petrol_station.id }, :method => :delete %></li>
+  <% end %>
+<br><br>
+<h1>All stations</h1>
+<% PetrolStation.all.each do |petrol_station| %>
+<%= petrol_station.likes %> likes <%= petrol_station.name %> <%= petrol_station.street %> <%= petrol_station.city %>
+  <% petrol_station.users.each do |user| %>
+      <li><%= user.nickname %> <%= user.mail %></li>
+  <% end %>
+  <br><br>
+<% end %>

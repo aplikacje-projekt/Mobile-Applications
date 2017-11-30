@@ -1,0 +1,15 @@
+<% if logged_in? %>
+  <h1>Log out, <%= @current_user.nickname %>.</h1>
+  <%= link_to "Log out", logout_path, method: :delete %>
+<% else %>
+  <h1>Sign in</h1>
+  <%= form_for(:session, url: login_path) do |f| %>
+    <%= f.label :mail %>
+    <%= f.text_field :mail, class: 'form-control' %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
+
+    <%= f.submit 'Sign in' %>
+  <% end %>
+<% end %>
